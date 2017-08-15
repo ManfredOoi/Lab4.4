@@ -34,12 +34,12 @@ public class AddActivity extends AppCompatActivity {
         editTextCredit= (EditText) findViewById(R.id.editTextCredit);
     }
 
-    public void saveRecord(View v) {
+    public void saveRecord(View v) { // insert data
         Course course = new Course();
 
         course.setCode(editTextCode.getText().toString());
         course.setTitle(editTextTitle.getText().toString());
-        course.setCredit(editTextCredit.getText().toString());
+        course.setCredit(editTextCredit.getText().toString()); // numeric but use text, not importance, becuase not use for calculation
 
         try {
             makeServiceCall(this, "https://bait2073.000webhostapp.com/insert_course.php", course);
@@ -72,10 +72,10 @@ public class AddActivity extends AppCompatActivity {
                             try {
                                 jsonObject = new JSONObject(response);
                                 int success = jsonObject.getInt("success");
-                                String message = jsonObject.getString("message");
-                                if (success==0) {
+                                String message = jsonObject.getString("message"); // the message is a string
+                                if (success==0) { // fail to insert
                                     Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
-                                }else{
+                                }else{ // pass
                                     Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
                                     finish();
                                 }

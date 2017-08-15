@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
         pDialog = new ProgressDialog(this);
         caList = new ArrayList<>();
 
-        if (!isConnected()) {
+        if (!isConnected()) { // check connection wifi or data
             Toast.makeText(getApplicationContext(), "No network", Toast.LENGTH_LONG).show();
         }
 
@@ -97,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
         // Instantiate the RequestQueue
         queue = Volley.newRequestQueue(context);
 
-        if (!pDialog.isShowing())
+        if (!pDialog.isShowing()) // any progress bar
             pDialog.setMessage("Syn with server...");
         pDialog.show();
 
@@ -107,8 +107,8 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(JSONArray response) {
                         try {
-                            caList.clear();
-                            for (int i = 0; i < response.length(); i++) {
+                            caList.clear(); // link list
+                            for (int i = 0; i < response.length(); i++) { // response is return by server
                                 JSONObject courseResponse = (JSONObject) response.get(i);
                                 String code = courseResponse.getString("code");
                                 String title = courseResponse.getString("title");

@@ -20,9 +20,13 @@ public class CourseAdapter extends ArrayAdapter<Course> {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        Course course = getItem(position);
+    public View getView(int position, View convertView, ViewGroup parent) { // match the data from the ui
+        // position is index of the record
+        // convertView is layout display each record
+        // parent layout of main activity
+        Course course = getItem(position); // retrieve record from list
 
+        // inflater is an object create UI layout
         LayoutInflater inflater  = (LayoutInflater) getContext()
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
